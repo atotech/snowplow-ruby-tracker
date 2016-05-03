@@ -172,7 +172,7 @@ module SnowplowTracker
       destination = URI(@collector_uri + '?' + URI.encode_www_form(payload))
       LOGGER.info("Sending GET request to #{@collector_uri}...")
       LOGGER.debug("Payload: #{payload}")
-      http = Net::HTTP.new(destination.host, destination.port, ENV['http_proxy_uri'], '3128')
+      http = Net::HTTP.new(destination.host, destination.port, ENV['http_proxy_uri'], ENV['http_proxy_port'])
       request = Net::HTTP::Get.new(destination.request_uri)
       if destination.scheme == 'https'
         http.use_ssl = true
